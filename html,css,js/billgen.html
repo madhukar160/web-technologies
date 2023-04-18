@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bill Generator</title>
+<style>
+.container {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+.container{
+background-color:gray;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+}
+
+button {
+  margin-top: 10px;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+#total {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+</style>  
+</head>
+<body>
+  <div class="container">
+    <h1>Bill Generator</h1>
+    <form>
+      <label for="item">Item Name:</label>
+      <input type="text" id="item" name="item"><br><br>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price"><br><br>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity"><br><br>
+      <button type="button" onclick="addItem()">Add Item</button>
+    </form>
+    <table id="bill">
+      <tr>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </table>
+    <div id="total">Total: 0</div>
+  </div>
+  <script>
+
+let items = [];
+
+function addItem() {
+  const itemName = document.getElementById("item").value;
+  const price = document.getElementById("price").value;
+  const quantity = document.getElementById("quantity").value;
+  
+  if (itemName === "" || price === "" || quantity === "") {
+    alert("Please fill all fields!");
+    return;
+  }
+  
+  const total = price * quantity;
+  items.push({ itemName, price, quantity, total });
+  displayItems();
+}
+
+function displayItems() {
+  const table = document.getElementById("bill");
+  table.innerHTML = `
+    <tr>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  `;
+  
+  let total = 0;
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    table.innerHTML += `
+      <tr>
+        <td>${item.itemName}</td>
+        <td>${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>${item.total}</td>
+      </tr>
+    `;
+    total += item.total;
+  }
+  
+  document.getElementById("total").innerHTML = `Total: ${total}`;
+}
+
+</script>
+</body>
+</html>

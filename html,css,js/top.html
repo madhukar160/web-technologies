@@ -1,0 +1,68 @@
+    <!DOCTYPE html>  
+    <html>  
+    <head> 
+    	<style >
+         
+            img{
+                max-width: 100%;
+                height: 200%;
+
+            }
+.timee{
+position:absolute;
+right:5%;
+top:50%;
+font-size:25px;
+font-weight:bold;
+color:red;
+
+
+}
+
+    	</style>
+    </head>  
+<body style="background-color: lightgray;">  
+        <div style="text-align: left;">  
+           <img  align="left" src="https://cse.anits.edu.in/headercse.jpg" > 
+        </div>
+<div class="timee">
+    <span id="hour">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span><span id="ampm">AM</span>
+    </div>
+        <script>
+function clock(){
+            // let date=document.getElementById('date');
+            let hours = document.getElementById('hour');
+            let minutes = document.getElementById('minutes');
+            let seconds = document.getElementById('seconds');
+            let ampm = document.getElementById('ampm');
+            var am="AM";
+
+            let h=new Date().getHours();
+            let m=new Date().getMinutes();
+            let s=new Date().getSeconds();
+            // let aa=new Date();
+            // date.innerHTML=aa;
+             
+             if (h>12){
+                h=h-12;
+                var am="PM";
+
+             }
+
+              h=(h<10)?"0"+h:h
+              m=(m<10)?"0"+m:m
+              s=(s<10)?"0"+s:s
+
+            hours.innerHTML=h;
+            minutes.innerHTML=m;
+            seconds.innerHTML=s;
+            ampm.innerHTML=am;
+
+
+
+        }
+        var interval = setInterval(clock,1000);
+
+</script>
+     </body>  
+    </html>  
